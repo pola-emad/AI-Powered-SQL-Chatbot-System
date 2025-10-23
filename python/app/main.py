@@ -26,7 +26,7 @@ engine = create_engine(CONN_STR)
 # -----------------------
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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"
+    api_key="API KEY"
 )
 
 EXTRA_HEADERS = {
