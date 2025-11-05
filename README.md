@@ -1,7 +1,7 @@
 This project is a proof-of-concept AI chatbot that converts natural language into SQL queries, executes them on a SQL Server database, and returns human-readable results.
 It bridges LLMs and relational databases in real time through an interactive Streamlit web interface powered by FastAPI on the backend.
 
-🚀 Features
+## Features
 
 Converts natural language requests into SQL queries using an AI model (OpenAI / Llama via OpenRouter).
 
@@ -13,7 +13,7 @@ End-to-end integration with FastAPI backend and Streamlit frontend.
 
 Extensible structure for multi-model or multi-database support.
 
-🧩 Tech Stack
+## Tech Stack
 
 Backend: Python, FastAPI, pyodbc
 
@@ -25,7 +25,7 @@ AI Models: OpenRouter (OpenAI, Llama)
 
 Other: REST APIs, JSON handling, prompt engineering
 
-⚙️ Setup Instructions
+## Setup Instructions
 
 Clone the repository.
 
@@ -50,7 +50,7 @@ streamlit run app.py
 
 Open the app in your browser, and start chatting with your database.
 
-🧠 Example Queries
+## Example Queries
 
 “Give me the intake of student Ahmed Ali.”
 
@@ -58,13 +58,17 @@ Open the app in your browser, and start chatting with your database.
 
 “Show the highest-rated freelance projects.”
 
-🛠️ Future Enhancements
+ ## Future Enhancements
 
 Support for multiple databases (PostgreSQL, MySQL).
 
 Enhanced security and query validation.
 
 Custom dashboards and visualizations.
+
+
+https://github.com/user-attachments/assets/d5171102-f083-4079-b617-044fc5af314a
+
 
 Conversational memory for contextual querying.
 z<img width="1652" height="821" alt="Screenshot 2025-10-21 194916" src="https://github.com/user-attachments/assets/5282f0ba-9b94-4561-95b2-200675c1286d" />
