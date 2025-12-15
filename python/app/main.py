@@ -34,7 +34,7 @@ client = u.client
 =======
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="API KEY"
+    api_key="API KEY" #replace with actual key
 )
 >>>>>>> d3ebf8724dc0a6b5955a1a88931e641ae644c145
 
