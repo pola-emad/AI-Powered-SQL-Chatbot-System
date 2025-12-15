@@ -27,9 +27,16 @@ engine = create_engine(CONN_STR)
 # -----------------------
 # OpenRouter Configuration
 # -----------------------
+<<<<<<< HEAD
 model=u.model
 client = u.client
 
+=======
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key="API KEY"
+)
+>>>>>>> d3ebf8724dc0a6b5955a1a88931e641ae644c145
 
 EXTRA_HEADERS = {
     "HTTP-Referer": "https://iti-examination-system.com",
