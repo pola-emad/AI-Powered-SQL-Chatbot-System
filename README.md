@@ -33,8 +33,7 @@ Install dependencies:
 
 pip install -r requirements.txt
 
-
-Configure your database credentials in the .env file.
+Configure your database credentials.
 
 Replace "API_KEY" with your actual OpenRouter or OpenAI key.
 
@@ -42,11 +41,9 @@ Run the backend:
 
 uvicorn main:app --reload
 
-
 Launch the Streamlit frontend:
 
-streamlit run app.py
-
+streamlit run chat_DB_app.py
 
 Open the app in your browser, and start chatting with your database.
 
@@ -58,7 +55,7 @@ Open the app in your browser, and start chatting with your database.
 
 “Show the highest-rated freelance projects.”
 
- ## Future Enhancements
+## Future Enhancements
 
 Support for multiple databases (PostgreSQL, MySQL).
 
@@ -66,12 +63,9 @@ Enhanced security and query validation.
 
 Custom dashboards and visualizations.
 
-
 https://github.com/user-attachments/assets/d5171102-f083-4079-b617-044fc5af314a
-
 
 Conversational memory for contextual querying.
 z<img width="1652" height="821" alt="Screenshot 2025-10-21 194916" src="https://github.com/user-attachments/assets/5282f0ba-9b94-4561-95b2-200675c1286d" />
 
 <img width="1667" height="782" alt="Screenshot 2025-10-21 195013" src="https://github.com/user-attachments/assets/3e0b40a7-a1ff-4a91-a99a-45b8964f6d31" />
-
