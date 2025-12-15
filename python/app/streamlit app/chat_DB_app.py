@@ -54,15 +54,13 @@ def display_welcome():
     """, unsafe_allow_html=True)
 
 def create_visualization(data, viz_type, x, y, agg=None):
-    df = pd.DataFrame(data)
-    
-    # Validate columns exist
-    if x not in df.columns or y not in df.columns:
-        st.warning(f"Required columns not found in data. Looking for '{x}' and '{y}'")
-        st.write("Available columns:", ", ".join(df.columns))
-        return None
-    
     try:
+        df = pd.DataFrame(data)
+        
+        if x not in df.columns or y not in df.columns:
+            st.warning(f"Missing columns: {x} or {y}")
+            return None
+            
         if agg:
             df = df.groupby(x, as_index=False).agg({y: agg})
         
@@ -74,65 +72,58 @@ def create_visualization(data, viz_type, x, y, agg=None):
             "histogram": px.histogram
         }
         
-        if viz_type in chart_funcs:
-            fig = chart_funcs[viz_type](df, x=x, y=y)
-            fig.update_layout(
-                margin=dict(l=20, r=20, t=30, b=20),
-                height=400
-            )
-            return fig
-        else:
-            st.warning(f"Unsupported chart type: {viz_type}")
+        if viz_type not in chart_funcs:
+            st.warning(f"Unsupported chart: {viz_type}")
             return None
             
+        fig = chart_funcs[viz_type](df, x=x, y=y)
+        fig.update_layout(
+            margin=dict(l=20, r=20, t=30, b=20),
+            height=400
+        )
+        return fig
+        
     except Exception as e:
-        st.error(f"Error creating visualization: {str(e)}")
+        st.error(f"Visualization error: {str(e)}")
         return None
+def create_chart(vis_prams,df):
+    chart = vis_prams['viz_type']
+    x = df[vis_prams['x']]
+    y = df[vis_prams['y']]
+    fig = getattr(px,chart)
+    fig = fig(df,x=x,y=y)
+    st.plotly_chart(fig, use_container_width=True)
 
 def format_database_response(response: Dict[str, Any]):
     if "error" in response:
         st.error(response["error"])
         return
 
-    # Display natural language explanation
+    # Show explanation first
     st.markdown(response["explanation"])
     
+    # Show visualization if available
+    # if response.get("type") == "visualization":
+    #     fig = create_visualization(
+    #         response["data"],
+    #         response["viz_type"],
+    #         response["x"],
+    #         response["y"],
+    #         response.get("agg")
+    #     )
+    #     if fig:
+    #         st.plotly_chart(fig, use_container_width=True)
+    
+    # Always show data table
+    if response.get("data"):
+        df = pd.DataFrame(response["data"])
+        st.dataframe(
+            df,
+            use_container_width=True,
+            hide_index=True
+        )
     if response.get("type") == "visualization":
-        if not all(k in response for k in ["data", "viz_type", "x", "y"]):
-            st.error("Missing required visualization parameters")
-            return
-            
-        fig = create_visualization(
-            response["data"],
-            response["viz_type"],
-            response["x"],
-            response["y"],
-            response.get("agg")
-        )
-        if fig:
-            st.plotly_chart(fig, use_container_width=True)
-        
-        # Always show data table as fallback
-        df = pd.DataFrame(response["data"])
-        st.dataframe(
-            df,
-            use_container_width=True,
-            hide_index=True,
-            column_config={col: st.column_config.Column(
-                width="medium"
-            ) for col in df.columns}
-        )
-    elif response.get("data"):
-        # Display data table if present
-        df = pd.DataFrame(response["data"])
-        st.dataframe(
-            df,
-            use_container_width=True,
-            hide_index=True,
-            column_config={col: st.column_config.Column(
-                width="medium"
-            ) for col in df.columns}
-        )
+        create_chart(response,df)
 
 def main():
     initialize_session_state()
