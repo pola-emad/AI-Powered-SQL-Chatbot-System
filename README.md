@@ -3,7 +3,7 @@ It bridges LLMs and relational databases in real time through an interactive Str
 
 ## Features
 
-Converts natural language requests into SQL queries using an AI model (OpenAI / Llama via OpenRouter).
+Converts natural language requests into SQL queries using an AI model (Deepseek/MiniMax via OpenRouter).
 
 Executes validated queries directly on the connected SQL Server database.
 
@@ -21,7 +21,7 @@ Frontend: Streamlit
 
 Database: SQL Server
 
-AI Models: OpenRouter (OpenAI, Llama)
+AI Models: OpenRouter (Deepseek/MiniMax )
 
 Other: REST APIs, JSON handling, prompt engineering
 
